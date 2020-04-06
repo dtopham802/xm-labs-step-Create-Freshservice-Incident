@@ -33,7 +33,7 @@ Values for the settings tab.
 | ----- | ----- |
 | Name | Freshservice - Create Incident |
 | Description | Step to create an incident in Freshservice  |
-| Icon | <kbd> <img src="media/freshservice.jpeg"></kbd> |
+| Icon | <kbd> <img width=70 src="/media/freshservice.jpg"></kbd> |
 | Include Endpoint | Yes |
 | Endpoint Type | Basic Auth |
 | Endpoint Label | FreshService |
