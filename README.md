@@ -11,7 +11,7 @@ This step is to help with the creation of Freshservice Incidents.
 
 # Files
 
-* [freshservice.jpeg](/media/freshservice.jpeg) - Logo for Freshservice Step
+* [freshservice.jpeg](media/freshservice.jpeg) - Logo for Freshservice Step
 
 # Freshservice
 Freshservice is a cloud-based IT Help Desk and service management solution that enables organizations to simplify their IT operations. The solution offers features that include a ticketing system, self-service portal and knowledge-base. This article is specifically talking about the "Create Freshservice Incident" Step. We have an entire workflow after the Incident is created [here](https://github.com/dtopham802/xm-labs-Freshservice).
@@ -27,13 +27,13 @@ This step is made to help with the creation of a Freshservice incident. This can
     2) By attatching this step to a repsonse option in an alert (i.e monitoting, etc) this will give an engineer a quick option to simply tap and xMatters will take care of the rest.
 
 ### Settings
-Values for the settings tab. A screen shot is also acceptable. If you have a custom icon, please upload it into the `/media` folder and reference with `<kbd> <img src="/media/hat.png"></kbd>`. See below for the format of a table in markdown. 
+Values for the settings tab. 
 
 | Field | Value |
 | ----- | ----- |
 | Name | Freshservice - Create Incident |
 | Description | Step to create an incident in Freshservice  |
-| Icon | <kbd> <img src="/media/freshservice.jpeg"></kbd> |
+| Icon | <kbd> <img src="media/freshservice.jpeg"></kbd> |
 | Include Endpoint | Yes |
 | Endpoint Type | Basic Auth |
 | Endpoint Label | FreshService |
