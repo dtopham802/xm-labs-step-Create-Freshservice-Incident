@@ -51,7 +51,7 @@ Values for the settings tab. A screen shot is also acceptable. If you have a cus
 | Urgency  | Yes | 0 | 2000 | Needs to be a number(1 = Low, 2 = Medium, 3 = High) | | No |
 | Impact | Yes | 0 | 2000 | Needs to be a number(1 = Low, 2 = Medium, 3 = High) | | No |
 | Source Type  | No | 0 | 2000 | Needs to be a number(1 = Email, 2 = Portal, 3 = Phone) | 1 | No |
-| Status | Yes | 0 | 2000 | Needs to be a number(2 = Open, 3 = Pending, 4 = Resolved, 5 = Closed) | No |
+| Status | Yes | 0 | 2000 | Needs to be a number(2 = Open, 3 = Pending, 4 = Resolved, 5 = Closed) | | No |
 | Email  | Yes | 0 | 2000 | Email address of the requester (API User) | | No |
 | Assignment Group | No | 0 | 2000 | Name of the Assignment Group | | No |
 | Priority  | Yes | 0 | 2000 | Needs to be a number(1 = Low, 2 = Medium, 3 = High, 4 = Urgent) | | No |
