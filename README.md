@@ -118,7 +118,16 @@ if (apiResponse1.statusCode >= 200 && apiResponse1.statusCode < 300) {
 output['id'] = something.ticket.id
 console.log(output['id'])
 ```
+### Endpoint
+On the top right hand side of every canvas in Flow Designer in xMatters, there is a "Components Tab". Click on that, then "Endpoints". If you haven't created a FreshService enpoint yet, click "Add" then fill in the appropriate details like the screenshot. You will need to do this in every workflow you want to leverage the Freshservice Steps.
 
+<kbd>
+  <img src="media/Componants FD.png" width="200" height="100">
+</kbd>
+
+<kbd>
+  <img src="media/Add FreshService Endpoint.png" width="200" height="100">
+</kbd>
 
 # Usage
-Details or tips here on how to use the step. Eg. create a new response called "such and such". Or a screen shot of the step(s) hooked into a flow. 
+You can use this step in any workflow. I would suggest trying it out from a monitoring workflow. In my example I create a new response option called "Create Freshservice Incident", drag and drop the "Freshservice - Create Incident" over and connect it to the response option. You then need to double click on the step and configure it how you want. In my case, I dragged over event properties over and typed some information in. **NOTE Make sure you point the step to your FreshService endpoint for authentication** 
