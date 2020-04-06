@@ -1,6 +1,5 @@
-# xM Labs Step Template
-Template for contributing Flow Designer steps to the [Flow Steps](https://github.com/xmatters/xMatters-Labs-Flow-Steps) repo
-
+# xM Labs Create Freshservice Incident
+This step is to help with the creation of Freshservice Incidents. 
 
 ---------
 
@@ -12,144 +11,115 @@ Template for contributing Flow Designer steps to the [Flow Steps](https://github
 
 # Files
 
-* [logo.png](/media/hat.png) - Logo for the Hat Factory
+* [logo.png](/media/freshservice.png) - Logo for Freshservice Step
 * [otherfile.file](/otherfile.file) - Some other file that does something useful.
 
-# Application Name Goes Here
-One or two liner about the product here. 
+# Freshservice
+Freshservice is a cloud-based IT Help Desk and service management solution that enables organizations to simplify their IT operations. The solution offers features that include a ticketing system, self-service portal and knowledge-base. This article is specifically talking about the "Create Freshservice Incident" Step. We have an entire workflow after the Incident is created [here](https://github.com/dtopham802/xm-labs-Freshservice).
 
-Each step for this "application" can be added below. I recommend exporting a comm plan with the steps so people can get to using them quickly.
-
-# `APPLICATION_NAME` setup
-Add details here about how to generate an auth token or to create a user. 
-
-## Get Token
-1. Login to `APPLICATION_NAME`. 
-2. Draw the rest of the Owl. 
+# Freshservice setup
+All you need to do in Freshservice is have an API user you can use as an endpoint. 
 
 # Flow Designer Steps
 
-## Action Name 1
-The "Create App Record" step creates a record in the `APPLICATION_NAME` and such and such. 
+## Freshservice - Create Incident
+This step is made to help with the creation of a Freshservice incident. This can be done in a couple of different ways.
+    1) Automatically from an xMatters alert or a POST from another system
+    2) By attatching this step to a repsonse option in an alert (i.e monitoting, etc) this will give an engineer a quick option to simply tap and xMatters will take care of the rest.
 
 ### Settings
 Values for the settings tab. A screen shot is also acceptable. If you have a custom icon, please upload it into the `/media` folder and reference with `<kbd> <img src="/media/hat.png"></kbd>`. See below for the format of a table in markdown. 
 
 | Field | Value |
 | ----- | ----- |
-| Name | Create a Hat |
-| Description | Sends a create a hat request to the hat factory.  |
-| Icon | <kbd> <img src="/media/hat.png"></kbd> |
+| Name | Freshservice - Create Incident |
+| Description | Step to create an incident in Freshservice  |
+| Icon | <kbd> <img src="/media/freshservice.png"></kbd> |
 | Include Endpoint | Yes |
 | Endpoint Type | Basic Auth |
-| Endpoint Label | Hat Factory |
+| Endpoint Label | FreshService |
 
 
 
 ### Inputs
-Inputs should be in the form of tables. The syntax looks like this in the markdown. The "content cells" do not have to line up, just make sure you have the right number of columns in each row. Required inputs must be at the top and please for the love of Pete, add some helpful text as to what the input is for or what it does. If the step only allows certain values, make sure to list them!
 
-```
-| Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
-| ----- | ----------| --- | --- | --------- | ------------- | --------- |
-| Name  | Yes | 0 | 2000 | This is the color of the hat to create | Blue | No |
-| Color | No | 0 | 2000 | The major color of the hat. Possible values are Red, White, Blue | Blue | No |
-```
 
 | Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
 | ----- | ----------| --- | --- | --------- | ------------- | --------- |
-| Name  | Yes | 0 | 2000 | This is the color of the hat to create | Blue | No |
-| Color | No | 0 | 2000 | The major color of the hat. Possible values are Red, White, Blue | Blue | No |
+| Subject  | Yes | 0 | 2000 | Subject of the ticket | | No |
+| Description | Yes | 0 | 20000 | HTML content of the ticket | | Yes |
+| Urgency  | Yes | 0 | 2000 | Needs to be a number(1 = Low, 2 = Medium, 3 = High) | | No |
+| Impact | Yes | 0 | 2000 | Needs to be a number(1 = Low, 2 = Medium, 3 = High) | | No |
+| Source Type  | No | 0 | 2000 | Needs to be a number(1 = Email, 2 = Portal, 3 = Phone) | 1 | No |
+| Status | Yes | 0 | 2000 | Needs to be a number(2 = Open, 3 = Pending, 4 = Resolved, 5 = Closed) | No |
+| Email  | Yes | 0 | 2000 | Email address of the requester (API User) | | No |
+| Assignment Group | No | 0 | 2000 | Name of the Assignment Group | | No |
+| Priority  | Yes | 0 | 2000 | Needs to be a number(1 = Low, 2 = Medium, 3 = High, 4 = Urgent) | | No |
+
 
 
 ### Outputs
 
 | Name |
 | ---- |
-| Hat |
-| Link |
+| id |
 
 ### Script
 
 ```javascript
-// Retrieve the name and color values
-var name = input['Name'];
-var color = input['Color'];
+console.log("****************GETTING GROUP ID FROM ASSIGNMENT GROUP INPUT")
 
-// Make the request
-var req = http.request({
-   "endpoint": "Hat Factory",
-   "path": "/hat",
-   "method": "POST",
-   "headers": {
-      "Content-Type": "application/json"
-   }
+var apiRequest = http.request({
+    'endpoint': 'FreshService',
+    'path': '/api/v2/groups',
+    'method': 'GET'
 });
 
-var hatPayload = {
-   "name": name,
-   "color": color
-};
+var apiResponse = apiRequest.write();
+if (apiResponse.statusCode >= 200 && apiResponse.statusCode < 300) {
+    var response = JSON.parse(apiResponse.body);
+}
 
-var resp = req.write( hatPayload );
+    var groups = response.groups;
+    var group_id;
+        for (i = 0; i < groups.length; i++) {
+        
+        temp_name = groups[i].name
+            if(temp_name == input['Assignment Group']) {
+            group_id = groups[i].id;
+            break;
+            }
+        }
 
-```
+console.log("****************REQUEST TO POST A TICKET")
 
-
-## Action Name 2
-The "Update App Record" step creates a record in the `APPLICATION_NAME` and such and such. 
-
-### Settings
-
-| Field | Value |
-| ----- | ----- |
-| Name | Update a Hat |
-| Description | Sends an update a hat request to the hat factory.  |
-| Icon | <kbd> <img src="/media/hat.png"></kbd> |
-| Include Endpoint | Yes |
-| Endpoint Type | Basic Auth |
-| Endpoint Label | Hat Factory |
-
-### Inputs
-
-| Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
-| ----- | ----------| --- | --- | --------- | ------------- | --------- |
-| Name  | Yes | 0 | 2000 | This is the color of the hat to create | Blue | No |
-| Color | No | 0 | 2000 | The major color of the hat. Possible values are Red, White, Blue | Blue | No |
-
-
-### Outputs
-
-| Name |
-| ---- |
-| Hat |
-| Link |
-
-### Script
-
-```javascript
-// Retrieve the name and color values
-var name = input['Name'];
-var color = input['Color'];
-
-// Make the request
-var req = http.request({
-   "endpoint": "Hat Factory",
-   "path": "/hat",
-   "method": "POST",
-   "headers": {
-      "Content-Type": "application/json"
-   }
+var apiRequest1 = http.request({
+    'endpoint': 'FreshService',
+    'path': '/api/v2/tickets',
+    'method': 'POST'
 });
 
-var hatPayload = {
-   "name": name,
-   "color": color
+var payload = {
+      "status":parseInt(input['Status']),
+      "urgency": parseInt(input['Urgency']),
+      "impact": parseInt(input['Impact']),
+      "description": (input['Description']),
+      "subject": (input['Subject']),
+      "email": (input['Email']),
+      "source": parseInt(input['Source Type']),
+      "priority": parseInt(input['Priority']),
+      "group_id": group_id
 };
 
-var resp = req.write( hatPayload );
+var apiResponse1 = apiRequest1.write(payload);
+if (apiResponse1.statusCode >= 200 && apiResponse1.statusCode < 300) {
+    var something = JSON.parse(apiResponse1.body);
+}
 
+output['id'] = something.ticket.id
+console.log(output['id'])
 ```
+
 
 # Usage
 Details or tips here on how to use the step. Eg. create a new response called "such and such". Or a screen shot of the step(s) hooked into a flow. 
