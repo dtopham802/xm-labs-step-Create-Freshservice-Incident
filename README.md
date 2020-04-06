@@ -11,8 +11,7 @@ This step is to help with the creation of Freshservice Incidents.
 
 # Files
 
-* [logo.png](/media/freshservice.png) - Logo for Freshservice Step
-* [otherfile.file](/otherfile.file) - Some other file that does something useful.
+* [freshservice.jpeg](/media/freshservice.jpeg) - Logo for Freshservice Step
 
 # Freshservice
 Freshservice is a cloud-based IT Help Desk and service management solution that enables organizations to simplify their IT operations. The solution offers features that include a ticketing system, self-service portal and knowledge-base. This article is specifically talking about the "Create Freshservice Incident" Step. We have an entire workflow after the Incident is created [here](https://github.com/dtopham802/xm-labs-Freshservice).
