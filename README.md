@@ -131,3 +131,7 @@ On the top right hand side of every canvas in Flow Designer in xMatters, there i
 
 # Usage
 You can use this step in any workflow. I would suggest trying it out from a monitoring workflow. In my example I create a new response option called "Create Freshservice Incident", drag and drop the "Freshservice - Create Incident" over and connect it to the response option. You then need to double click on the step and configure it how you want. In my case, I dragged over event properties over and typed some information in. **NOTE Make sure you point the step to your FreshService endpoint for authentication** 
+
+<kbd>
+  <img src="media/Step Use.gif" width="400" height="200">
+</kbd>
