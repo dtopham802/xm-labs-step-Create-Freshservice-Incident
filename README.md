@@ -122,7 +122,7 @@ console.log(output['id'])
 On the top right hand side of every canvas in Flow Designer in xMatters, there is a "Components Tab". Click on that, then "Endpoints". If you haven't created a FreshService enpoint yet, click "Add" then fill in the appropriate details like the screenshot. You will need to do this in every workflow you want to leverage the Freshservice Steps. Make sure the "Preemptive" Checkbox is checked.
 
 <kbd>
-  <img src="media/Componants FD.png" width="800">
+  <img src="media/Componants FD.png" width="900">
 </kbd>
 
 <kbd>
